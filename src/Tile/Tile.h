@@ -7,7 +7,7 @@
 class Tile
 {
 public:
-    void setOccupant(Entity &entity);
+    void setOccupant(Entity *entity);
     Entity *getOccupant();
     ~Tile();
 

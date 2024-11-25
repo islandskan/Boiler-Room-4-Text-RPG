@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-void Tile::setOccupant(Entity &entity)
+void Tile::setOccupant(Entity *entity)
 {
     this->m_occupant = new Entity(entity);
 }
