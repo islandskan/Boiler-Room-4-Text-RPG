@@ -7,6 +7,9 @@ bool Entity::isDead()
 
 void Entity::heal(int hp)
 {
+    if (this->m_heatlth < 0) 
+        return;
+    
     this->m_health += hp;
     if (m_health > m_maxHealth)
         m_health = m_maxHealth;
