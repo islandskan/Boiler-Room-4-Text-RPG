@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 #include "Player.h"
+#include "ContextMenu.h"
+#include <functional>
 
 class CombatManager
 {
@@ -13,8 +15,8 @@ public:
     void takeTurn();
 
 private:
-    int calculateTotalDamage(Player& player);
-    int calculateTotalDamage(Entity& entity);
+    ContextMenu combatMenu;
+    std::vector<std::function<void()>> actions;
 
     bool isPlayersTurn;
     Player& m_player;
