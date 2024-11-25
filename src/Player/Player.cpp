@@ -43,7 +43,7 @@ Tile* Player::move(DIRECTION direction, WorldMap& worldMap) {
     }
 
     // Uppdatera nuvarande tile baserat på den nya positionen
-    currentTile = worldMap.getTile(position.x, position.y);
+    currentTile = &worldMap.getTile(position.x, position.y);
 
     return currentTile;
 }
