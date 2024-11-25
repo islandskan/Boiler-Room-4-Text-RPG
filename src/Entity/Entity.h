@@ -14,7 +14,6 @@ public:
 private:
     int m_health, m_maxHealth, m_damage;
     // Inventory inventory;
-    Vector2 m_position;
 };
 
 #endif
