@@ -1,8 +1,8 @@
 #include "Player.h"
 #include "Item.h"
 
-Player::Player(const std::string& className, double armor, Tile* startTile, Vector2 startPosition)
-    : className(className), armor(armor), currentTile(startTile), position(startPosition) {}
+Player::Player(const std::string& className, double armor, Tile* startTile, Vector2 startPosition, int hpRecoveredOnRest, WorldMap& worldMap)
+    : className(className), armor(armor), currentTile(startTile), position(startPosition), hpRecoveredOnRest(hpRecoveredOnRest), worldMap(worldMap) {}
 
 double Player::getArmor() const {
     return armor;
@@ -33,7 +33,27 @@ bool Player::deEquip(Item* item) {
     return false;  
 }
 
-Tile* Player::move(DIRECTION direction, WorldMap& worldMap) {
+Tile* Player::move(DIRECTION direction) {
+    // Uppdatera positionen baserat på riktningen
+    switch (direction) {
+        case DIRECTION::NORTH: position.y -= 1; break;
+        case DIRECTION::SOUTH: position.y += 1; break;
+        case DIRECTION::EAST:  position.x += 1; break;
+        case DIRECTION::WEST:  position.x -= 1; break;
+    }
+
+    // Uppdatera nuvarande tile baserat på den nya positionen
+    currentTile = &worldMap.getTile(position.x, position.y);
+
+    return currentTile;
+}
+
+Tile* Player::move() {
+    int input = directionsMenu.getInput();
+    if (input > 4) // Should call some quit method or something
+        return nullptr;
+    DIRECTION direction = (DIRECTION) input;
+
     // Uppdatera positionen baserat på riktningen
     switch (direction) {
         case DIRECTION::NORTH: position.y -= 1; break;
@@ -61,4 +81,9 @@ void Player::takeDamage(int dmg)
     {
         
     }
+}
+
+void Player::rest() 
+{
+    m_health += hpRecoveredOnRest;
 }
