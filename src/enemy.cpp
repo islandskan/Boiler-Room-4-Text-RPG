@@ -39,4 +39,8 @@ void Enemy::attack(Entity* entity) {
 // Fienden tar skada
 void Enemy::takeDamage(int dmg) {
     m_health -= dmg;
-    std::cout << m_name << " takes " << dmg << " damage! Health
+    if (m_health < 0) {
+        m_health = 0;
+    }
+    std::cout << m_name << " takes " << dmg << " damage! Health is now " << m_health << ".\n";
+}
