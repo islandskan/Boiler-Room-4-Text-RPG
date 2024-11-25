@@ -1,5 +1,4 @@
 #include "Tile.h"
-#include <memory>
 
 void Tile::setOccupant(Entity *entity)
 {
