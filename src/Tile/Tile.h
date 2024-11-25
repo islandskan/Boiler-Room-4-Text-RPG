@@ -14,7 +14,7 @@ public:
 
     void onEnter(const Player &player);
 private:
-    std::unique_ptr<Entity> m_occupant;
+    Entity *m_occupant;
 };
 
 #endif
