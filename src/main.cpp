@@ -1,44 +1,34 @@
 #include <iostream>
 #include <vector>
 
-void printMap(int width, int height, int playerX, int playerY)
+void printGrid(int width, int height, int playerX, int playerY)
 {
-    // Print tiles as: '□'
-    std::vector<std::vector<char>> map(height, std::vector<char>(width, '□'));
+    // Grid '□'
+    std::vector<std::vector<char>> grid(height, std::vector<char>(width, '□'));
 
-    // Print the player as: 'O'
-    map[playerY][playerX] = 'O';
+    // Player 'O'
+    grid[playerY][playerX] = 'O';
 
-    // Print the map
-    for (const auto &row : map)
+    // Grid
+    for (int y = 0; y < height; y++)
     {
-        for (char tile : row)
+        for (int x = 0; x < width; x++)
         {
-            std::cout << tile << ' ';
+            std::cout << grid[y][x] << ' ';
         }
-        std::cout << '\n';
+        std::cout << std::endl;
     }
 }
 
 int main()
 {
-    int mapWidth = 7;  // Map width
-    int mapHeight = 5; // Map height
-    int playerX = 3;   // Player X-coordinate
-    int playerY = 2;   // Player Y-coordinate
+    int width = 7;   // Grid width
+    int height = 5;  // Grid height
+    int playerX = 3; // Player X position
+    int playerY = 2; // Player Y position
 
-    // Allow customization
-    std::cout << "Enter map width: ";
-    std::cin >> mapWidth;
-    std::cout << "Enter map height: ";
-    std::cin >> mapHeight;
-    std::cout << "Enter player X position (0-" << mapWidth - 1 << "): ";
-    std::cin >> playerX;
-    std::cout << "Enter player Y position (0-" << mapHeight - 1 << "): ";
-    std::cin >> playerY;
-
-    // Print the map
-    printMap(mapWidth, mapHeight, playerX, playerY);
+    std::cout << "Initial Grid:" << std::endl;
+    printGrid(width, height, playerX, playerY);
 
     return 0;
 }
