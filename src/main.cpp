@@ -1,6 +1,8 @@
+#include "Enemy.h"
 #include <iostream>
+#include <ctime>
 #include <vector>
-
+  
 void printGrid(int width, int height, int playerX, int playerY)
 {
     // Grid '□'
@@ -20,8 +22,32 @@ void printGrid(int width, int height, int playerX, int playerY)
     }
 }
 
-int main()
-{
+int main() {
+    // Seed
+    srand(static_cast<unsigned int>(time(0)));
+
+    // Skapar fiende
+    Enemy enemy1("enemy1", 50, 15);
+
+    // Liv
+    int playerHealth = 100;
+
+    // Info
+    enemy1.displayStatus();
+
+    // Enemy attackerar spelare
+    enemy1.attackPlayer(playerHealth);
+    std::cout << "Player's health: " << playerHealth << "\n";
+
+    // Spelare attackerar
+    enemy1.takeDamage(20);
+
+    // Från fiende till vän
+    enemy1.setHostility(false);
+
+    // Info
+    enemy1.displayStatus();
+  
     int width = 7;   // Grid width
     int height = 5;  // Grid height
     int playerX = 3; // Player X position
