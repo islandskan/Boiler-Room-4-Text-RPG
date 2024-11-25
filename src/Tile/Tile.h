@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Player.h"
+#include <memory>
 
 class Tile
 {
@@ -13,7 +14,7 @@ public:
 
     void onEnter(const Player &player);
 private:
-    Entity *m_occupant;
+    std::unique_ptr<Entity> m_occupant;
 };
 
 #endif
