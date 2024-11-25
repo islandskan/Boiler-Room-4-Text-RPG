@@ -47,3 +47,18 @@ Tile* Player::move(DIRECTION direction, WorldMap& worldMap) {
 
     return currentTile;
 }
+
+
+void Player::attack(Entity* entity) 
+{
+    entity->takeDamage(m_damage);
+}
+
+void Player::takeDamage(int dmg) 
+{
+    m_health -= dmg;
+    if (isDead())
+    {
+        
+    }
+}

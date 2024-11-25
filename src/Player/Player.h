@@ -9,7 +9,7 @@
 #include "DIRECTION.h"
 
 
-class Player {
+class Player : public Entity {
 private:
     double armor;             
     std::string className;   
@@ -21,7 +21,10 @@ public:
 
     double getArmor() const;           
     std::string getClassName() const;     
-    Vector2 getPosition() const;           
+    Vector2 getPosition() const;  
+
+    void attack(Entity* entity) override;
+    void takeDamage(int dmg) override;         
 
     bool equip(Item* item);                
     bool deEquip(Item* item);          
