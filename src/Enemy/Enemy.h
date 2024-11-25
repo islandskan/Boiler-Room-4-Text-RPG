@@ -1,23 +1,21 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef __ENEMY_H__
+#define __ENEMY_H__
 
+#include "Entity.h"
 #include <string>
 
-class Enemy {
-private:
-    std::string name;
-    int health;
-    int attackPower;
-    bool isFriendly;
-
+class Enemy : public Entity {
 public:
-    Enemy(const std::string& enemyName, int enemyHealth, int enemyAttackPower, bool friendly = false);
+    Enemy(const std::string& name, int health, int maxHealth, int damage, bool friendly);
+    void attack(Entity* entity) override;
+    void takeDamage(int dmg) override;
+    std::string getName() const;
+    bool isFriendly() const;
+    void setFriendly(bool friendly);
 
-    void attackPlayer(int& playerHealth);
-    void takeDamage(int damage);
-    void setHostility(bool hostile);
-    bool isDead() const;
-    void displayStatus() const;
+private:
+    std::string m_name;
+    bool m_friendly;
 };
 
 #endif
