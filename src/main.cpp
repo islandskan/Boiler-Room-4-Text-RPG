@@ -62,26 +62,26 @@ int main() {
     srand(static_cast<unsigned int>(time(0)));
 
     // Skapar fiende
-    Enemy enemy1("enemy1", 50, 15);
+    Enemy enemy1("enemy1", 10, 10, 15, false);
 
     // Liv
     int playerHealth = 100;
 
-    // Info
-    enemy1.displayStatus();
+    // Info method is possibly missing
+    // enemy1.displayStatus();
 
-    // Enemy attackerar spelare
-    enemy1.attackPlayer(playerHealth);
+    // Enemy attackerar spelare, behöver en spelare
+    // enemy1.attack(player);
     std::cout << "Player's health: " << playerHealth << "\n";
 
     // Spelare attackerar
     enemy1.takeDamage(20);
 
     // Från fiende till vän
-    enemy1.setHostility(false);
+    enemy1.setFriendly(false);
 
     // Info
-    enemy1.displayStatus();
+    // enemy1.displayStatus();
   
     int width = 7;   // Grid width
     int height = 5;  // Grid height

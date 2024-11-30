@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Player.h"
+#include <memory>
 
 class Tile
 {

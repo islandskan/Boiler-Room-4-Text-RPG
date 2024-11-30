@@ -1,46 +1,46 @@
 #include "Enemy.h"
 #include <iostream>
-#include <cstdlib> // För random numbers
 
-// Kons
-Enemy::Enemy(const std::string& enemyName, int enemyHealth, int enemyAttackPower, bool friendly)
-    : name(enemyName), health(enemyHealth), attackPower(enemyAttackPower), isFriendly(friendly) {}
+// Konstruktor
+Enemy::Enemy(const std::string& name, int health, int maxHealth, int damage, bool friendly)
+{
+    m_name = name;
+    m_health = health;
+    m_maxHealth = maxHealth;
+    m_damage = damage;
+    m_friendly = friendly;
+}
 
-// Attackera spelare
-void Enemy::attackPlayer(int& playerHealth) {
-    if (isFriendly) {
-        std::cout << name << " is friendly and doesn't attack!\n";
+// Få namnet på fienden
+std::string Enemy::getName() const {
+    return m_name;
+}
+
+// Kontrollera om fienden är vänlig
+bool Enemy::isFriendly() const {
+    return m_friendly;
+}
+
+// Sätt om fienden är vänlig eller fientlig
+void Enemy::setFriendly(bool friendly) {
+    m_friendly = friendly;
+}
+
+// Fienden attackerar en annan enhet
+void Enemy::attack(Entity* entity) {
+    if (m_friendly) {
+        std::cout << m_name << " is friendly and doesn't attack!\n";
     } else {
-        int damage = (rand() % attackPower) + 1;
-        std::cout << name << " attacks the player for " << damage << " damage!\n";
-        playerHealth -= damage;
+        std::cout << m_name << " attacks for " << m_damage << " damage!\n";
+        entity->takeDamage(m_damage);
     }
 }
 
-// Skadas
-void Enemy::takeDamage(int damage) {
-    health -= damage;
-    std::cout << name << " takes " << damage << " damage. Health is now " << health << ".\n";
-    if (health <= 0) {
-        std::cout << name << " has been killed!\n";
+// Fienden tar skada
+void Enemy::takeDamage(int dmg) {
+    m_health -= dmg;
+    if (m_health < 0) {
+        m_health = 0;
     }
-}
-
-// Vänlig
-void Enemy::setHostility(bool hostile) {
-    isFriendly = !hostile;
-    std::cout << name << (isFriendly ? " is now friendly.\n" : " is now hostile.\n");
-}
-
-// Om enemy är död
-bool Enemy::isDead() const {
-    return health <= 0;
-}
-
-// Printa info
-void Enemy::displayStatus() const {
-    std::cout << "Enemy: " << name << "\n"
-              << "Health: " << health << "\n"
-              << "Attack Power: " << attackPower << "\n"
-              << (isFriendly ? "Friendly\n" : "Hostile\n");
+    std::cout << m_name << " takes " << dmg << " damage! Health is now " << m_health << ".\n";
 }

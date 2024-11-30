@@ -11,7 +11,7 @@ public:
     void heal(int hp);
     int getHealth();
     int getDamage();
-private:
+protected:
     int m_health, m_maxHealth, m_damage;
     // Inventory inventory;
 };

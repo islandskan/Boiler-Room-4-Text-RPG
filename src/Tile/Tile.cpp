@@ -2,7 +2,7 @@
 
 void Tile::setOccupant(Entity *entity)
 {
-    this->m_occupant = new Entity(entity);
+    this->m_occupant = entity;
 }
 
 Entity *Tile::getOccupant()
@@ -15,7 +15,4 @@ void Tile::onEnter(const Player &player)
     
 }
 
-Tile::~Tile()
-{
-    delete this->m_occupant;
-}
+Tile::~Tile() {}
